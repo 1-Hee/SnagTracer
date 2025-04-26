@@ -1,37 +1,92 @@
+// libs
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
+// components
+import SidebarItem from "./units/SidebarItem";
+import LanguageSwitcher from "./units/LanguageSwitcher"
+import ProfileIcon from "./units/ProfileIcon";
+import NotificationIcon from "./units/NotificationIcon";
+
+// pages
+import HomePage from "./page/HomePage"
+import MyWorkspace from "./page/MyWorkspace"
+import CreateWorkspace from "./page/CreateWorkspace"
+import AddIssue from "./page/AddIssue"
+import MyBookmark from "./page/MyBookmark"
+import ManageAttachment from "./page/ManageAttachment"
+import UserProfile from "./page/UserProfile"
+import ManageUser from "./page/ManageUser"
+
+
+// assets
+import iconHome from './assets/ic_home.svg';
+import iconWorkspace from './assets/ic_workspace.svg';
+import iconCreateWorkspace from './assets/ic_create_workspace.svg';
+import iconAddIssue from './assets/ic_add_issue.svg';
+import iconBookmark from './assets/ic_bookmark.svg';
+import iconAttachment from './assets/ic_attachment.svg';
+import iconMyProfile from './assets/ic_my_info.svg';
+import iconManageUser from './assets/ic_manage_user.svg';
+
+const sidebarItems = [
+  { icon: iconHome, labelKey: "home", path:"/" },
+  { icon: iconWorkspace, labelKey: "myWorkspace", path:"/myWorkspace" },
+  { icon: iconCreateWorkspace, labelKey: "createWorkspace", path:"/createWorkspace"  },
+  { icon: iconAddIssue, labelKey: "addIssue", path:"/addIssue"  },
+  { icon: iconBookmark, labelKey: "myBookmark", path:"/myBookmark"  },
+  { icon: iconAttachment, labelKey: "manageAttachment", path:"/manageAttachment"  },
+  { icon: iconMyProfile, labelKey: "myProfile", path:"/myProfile"  },
+  { icon: iconManageUser, labelKey: "manageUser", path:"/manageUser" },
+];
 
 const App = () => {
+  const { t } = useTranslation();  // useTranslation 훅을 사용해 t 함수 가져오기
+
   const [isSideOpen, setIsSideOpen] = useState(true);
 
   return(
     <div className="flex flex-col h-screen">
       {/* top bar */}
-      <header className="h-14 bg-blue-600 text-white flex items-center px-4">
+      <header className="h-14 bg-mono300 text-white flex items-center px-4">
         <button
           onClick={()=>{setIsSideOpen(!isSideOpen)}}
           className="mr-4 text-xl"
         >
           ☰         
         </button>
-        <h1 className="text-lg font-bold">Dashbaord</h1>
+
+        {/* 오른쪽 영역 */}
+        <div className="flex items-center ml-auto space-x-4">
+            <LanguageSwitcher />
+            <NotificationIcon count={3} />
+            <ProfileIcon />
+        </div>
       </header>
       <div className="flex flex-1 overflow-hidden">
         {/* Sidebar */}
         <aside
-          className={`transition-all duration-300 bg-gray-800 text-white ${isSideOpen ? 'w-64' : 'w-0'} overflow-hidden`}
+          className={`transition-all duration-300 bg-mono50 text-black ${isSideOpen ? 'w-64' : 'w-0'} overflow-hidden`}
         >
           <div className="p-4">
             <ul>
-              <li className="mb-2">item1</li>
-              <li className="mb-2">item2</li>
-              <li className="mb-2">item3</li>
+              {sidebarItems.map((item, index) => <SidebarItem key={index} icon={item.icon} label={t(item.labelKey)} path={item.path}/>)}
             </ul>
           </div>
         </aside>
         {/* Main Content */}
         <main className="flex-1 bg-gray-50 p-6 overflow-auto">
-          <h2 className="text-2xl font-semibold mb-4">This is Test</h2>
-          <p>This is  Test2</p>
+          <Routes>
+            <Route path="/" element={<HomePage/>} />
+            <Route path="/myWorkspace" element={<MyWorkspace/>} />
+            <Route path="/createWorkspace" element={<CreateWorkspace/>} />
+            <Route path="/addIssue" element={<AddIssue/>} />
+            <Route path="/myBookmark" element={<MyBookmark/>} />
+            <Route path="/manageAttachment" element={<ManageAttachment/>} />
+            <Route path="/myProfile" element={<UserProfile/>} />
+            <Route path="/manageUser" element={<ManageUser/>} />
+          </Routes>
         </main>
       </div>
     </div>
