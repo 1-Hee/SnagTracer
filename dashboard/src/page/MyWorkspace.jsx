@@ -1,5 +1,6 @@
 // libs
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from "react-i18next";
 
 // assets
 import { HiSearch } from 'react-icons/hi'; //
@@ -9,6 +10,8 @@ import WorkspaceItem from '../units/WorkspaceItem';
 import RecentIssue from "../units/RecentIssue"
 
 const MyWorkspace = () => {
+  const { t } = useTranslation();  // useTranslation hook;
+
   const [workspaces, setWorkspaces] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [sortingOrder, setSortingOrder] = useState('asc'); // 정렬 순서
@@ -19,7 +22,6 @@ const MyWorkspace = () => {
   // 무한 스크롤을 위한 작업실 목록 로딩
   const loadWorkspaces = async () => {
     setLoading(true);
-    // 여기서는 더미 데이터를 사용하고 있으니 실제 데이터 fetch로 변경할 수 있습니다.
     const fetchedWorkspaces = [
       { id: 1, title: 'Workspace 1', leader: 'Alice', memberCount: 3, issueCount: 2, participantCount: 5, issue: { title: 'Login Issue', date: '2025-04-01', author: 'User 1', content: 'Cannot login' } },
       { id: 2, title: 'Workspace 2', leader: 'Bob', memberCount: 4, issueCount: 1, participantCount: 6, issue: { title: 'API Error', date: '2025-04-02', author: 'User 2', content: 'API is down' } }
@@ -54,34 +56,30 @@ const MyWorkspace = () => {
   return (
     <div className='flex justify-center min-h-screen p-4'>
         <div className="w-full max-w-[712px] bg-white rounded-2xl shadow-md p-8">
-            <h2 className="text-2xl font-semibold mb-6">나의 작업실</h2>
-
-            {/* 제목과 검색창 사이에 구분선 추가 */}
+            <h2 className="text-2xl font-semibold mb-6">{t('myWorkspace')}</h2>
             <div className="border-t border-gray-300 mb-6"></div>
-
-            {/* 검색창과 돋보기 아이콘 */}
             <div className="relative mb-6">
             <input
                 type="text"
                 value={searchQuery}
                 onChange={handleSearchChange}
                 className="w-full p-2 pl-10 border border-mono300 rounded-xl"
-                placeholder="작업실을 검색하세요..."
+                placeholder={t('hintSearchWorkpsace')}
             />
             <HiSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-pale-blue500" size={20} />
             </div>
             {/* 작업실 개수 및 정렬 */}
             <div className="flex justify-between mb-6 items-center">
-                <div className="text-sm">작업실 개수: {userWorkspacesCount}개</div>
+                <div className="text-sm">{t('txtCntWorkpsace')}: {userWorkspacesCount} {t('txtItems')}</div>
                 <div className="flex items-center">
-                <span className="mr-4 text-sm">정렬 순서 :</span>
+                <span className="mr-4 text-sm">{t('txtSortOrder')} :</span>
                 <select
                     value={sortingOrder}
                     onChange={handleSortChange}
                     className="p-2 border border-mono300 rounded text-sm"
                 >
-                    <option value="asc text-sm">오름차순</option>
-                    <option value="desc text-sm">내림차순</option>
+                    <option value="asc text-sm">{t('txtAsc')}</option>
+                    <option value="desc text-sm">{t('txtDesc')}</option>
                 </select>
                 </div>
             </div>
@@ -122,7 +120,7 @@ const MyWorkspace = () => {
                 ))}
             </div>
 
-            {loading && <div className="text-center mt-4">로딩 중...</div>}
+            {loading && <div className="text-center mt-4">{t('txtLoading')}</div>}
         </div>
     </div>
   );

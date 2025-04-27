@@ -5,7 +5,7 @@ function SidebarItem({ icon, label, path }) {
     const navigate = useNavigate();
 
     return (
-        <li className="flex items-center mb-2 hover:bg-pale-blue300 
+        <li className="flex items-center mb-2 hover:bg-mono300 
         transition-all duraition-300 
         focus:outline-none cursor-pointer 
         p-2 rounded"

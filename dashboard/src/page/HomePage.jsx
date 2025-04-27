@@ -41,6 +41,7 @@ const HomePage = () => {
                     <ItemLoginInfo label={t('position')} value={userInfo.position} />
                     <ItemLoginInfo label={t('lastLogin')} value={userInfo.lastLogin} />   
                 </div>
+                <div className="border-t border-gray-300 mb-6 mt-6"></div>
                 <WorkspaceList/>
                 <MyIssueList/>
                 <IssueResolution total={10} resolved={7} />
