@@ -19,6 +19,14 @@ const MyWorkspace = () => {
   const [page, setPage] = useState(1); // 무한 스크롤을 위한 페이지 번호
   const [loading, setLoading] = useState(false); // 로딩 상태
 
+  // 정렬 옵션명 리스트
+  const [sortOptionList] = useState([
+    { optionKey: "txtAsc" },
+    { optionKey: "txtDesc" },
+    { optionKey: "txtLatest" },
+    { optionKey: "txtOldest" },
+  ]);  
+
   // 무한 스크롤을 위한 작업실 목록 로딩
   const loadWorkspaces = async () => {
     setLoading(true);
@@ -78,8 +86,13 @@ const MyWorkspace = () => {
                     onChange={handleSortChange}
                     className="p-2 border border-mono300 rounded text-sm"
                 >
-                    <option value="asc text-sm">{t('txtAsc')}</option>
-                    <option value="desc text-sm">{t('txtDesc')}</option>
+                    {
+                        sortOptionList.map((option, index) => (
+                        <option key={index} value={option.optionKey}>
+                            {t(option.optionKey)} {/* option.optionKey에 해당하는 텍스트 출력 */}
+                        </option>
+                        ))
+                    }
                 </select>
                 </div>
             </div>
