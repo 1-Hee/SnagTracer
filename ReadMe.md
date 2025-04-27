@@ -9,15 +9,11 @@
   - 북마크 및 문서 관리 기능 / Features for managing bookmarks and documents.
   - 관리자 페이지를 통한 사용자 권한 제어 / User permission management via the administration page.
 
----
-
 ## 🗓️ Project Schedule
 | Date | Content |
 |:----:|:----|
 | 2025.04.01 ~ 2025.04.25 | 프로젝트 기획 및 설계 |
 | 2025.04.26 ~  | 프론트엔드 개발 및 화면 구현 |
-
----
 
 ## 🛠️ 기술 스택 (Tech Stack)
 
@@ -34,8 +30,6 @@
 - GitHub Actions (CI/CD)
 - Docker (배포 예정)
 
----
-
 ## 📦 버전 관리 (Version Trace)
 
 | 버전 | 날짜 | 주요 변경 사항 |
@@ -43,4 +37,4 @@
 | v0.1.0 | 2025.04.26. | 프로젝트 초기 세팅 및 레이아웃 구성 |
 
 
-## 시스템 구성도 (System Architecture)
+## 🧩 시스템 구성도 (System Architecture)
