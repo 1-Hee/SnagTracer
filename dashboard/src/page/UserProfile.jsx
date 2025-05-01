@@ -74,8 +74,7 @@ const UserProfile = () => {
     }, []);
 
     return (
-        <div className="flex justify-center p-2">
-
+        <div className="justify-center p-6 shadow bg-white rounded-l max-w-4xl mx-auto">
             {/* Image Preview Model */}
             { isImageModalOpen && 
                 <ImagePreviewModal 
@@ -83,106 +82,103 @@ const UserProfile = () => {
                     onDismiss={()=> {setIsImageModalOpen(false) }}
                     /> 
             }
+            <h2 className="text-2xl font-semibold mb-6">{t('txtMyProfile')}</h2>
+            <div className="border-t border-mono300 mb-6"></div>
+            <div className="flex flex-col items-center space-y-2">
+                <img
+                    src={previewImageSrc}
+                    alt="Profile Image"
+                    className="w-36 h-36 rounded-full object-cover cursor-pointer"
+                    onClick={(e)=> {handleImageClick(previewImageSrc)}}
+                />
+                <button className="text-sm text-pale-blue500 hover:underline pt-2 pb-3">{t('txtEditProfile')}</button>
+            </div>
 
-            <div className="w-full max-w-[712px] bg-white rounded-2xl shadow-md p-8">
-                <h2 className="text-2xl font-semibold mb-6">{t('txtMyProfile')}</h2>
-                <div className="border-t border-mono300 mb-6"></div>
-                <div className="flex flex-col items-center space-y-2">
-                    <img
-                        src={previewImageSrc}
-                        alt="Profile Image"
-                        className="w-36 h-36 rounded-full object-cover cursor-pointer"
-                        onClick={(e)=> {handleImageClick(previewImageSrc)}}
-                    />
-                    <button className="text-sm text-pale-blue500 hover:underline pt-2 pb-3">{t('txtEditProfile')}</button>
-                </div>
-
-                <div className="space-y-4 mt-6">
-                    <div className="flex items-center justify-between space-x-2 h-10">
-                        <div className="flex h-full items-center">
-                            <label className="w-16">{t('txtName')}</label>
-                            <input
-                                type="text"
-                                className="flex-1 px-4 py-2 border rounded-md"
-                                value={userInfo.name}
-                                />
-                        </div>
-                        <button className="h-full w-20 bg-pale-blue600 text-white rounded text-sm">
-                            {t('txtEdit')}
-                        </button>
-                    </div>
-
-                    <div className="flex items-center justify-between space-x-2 h-10">
-                        <div className="flex h-full items-center">
-                            <label className="w-16">{t('txtEmail')}</label>
-                            <input
-                                type="text"
-                                className="flex-1 px-4 py-2 border rounded-md bg-mono100 text-mono500"
-                                value={userInfo.email}
-                                readOnly
-                                />
-                        </div>
-                        <button 
-                            className="h-full w-20 bg-green600 text-white rounded text-sm"
-                            onClick={handleAuthRequest}
-                            >
-                            {t('txtAuth')}
-                        </button>
-                    </div>
-                    {/* Auth Code */}
-                    { isRequestAuth &&
-                    <div className="">
-                        <div className="flex items-center h-10">
-                            <div className="ml-auto flex h-full items-center">
-                            <label className="mx-4">{t('txtAuthCode')}</label>
-                            <input
-                                type="text"
-                                className="ml-auto w-32 mx-4 flex-1 px-1 py-2 border rounded-md"
-                                value={authCode}
-                                onChange={(e) => setAuthCode(e.target.value)}
-                            />
-                            </div>
-                            <button className="h-full w-20 bg-pale-blue600 text-white rounded text-sm">
-                            {t('txtCheck')}
-                            </button>
-                        </div>
-
-                        {/* 시간 표시 영역을 오른쪽 정렬 */}
-                        <div className="flex justify-end my-4">
-                            <span className="text-sm text-mono500">
-                            {t('txtTimeRemain')} : {remainingTime}
-                            </span>
-                        </div>
-                    </div>
-                    }
-
-                    {/* Deparment */}
-                    <div className="flex items-center justify-between space-x-2 h-10">
-                        <label className="w-16">{t('txtDepartment')}</label>
+            <div className="space-y-4 mt-6">
+                <div className="flex items-center justify-between space-x-2 h-10">
+                    <div className="flex h-full items-center">
+                        <label className="w-16">{t('txtName')}</label>
                         <input
                             type="text"
-                            className="px-3 py-2 border rounded-md bg-mono100"
-                            value={userInfo.department}
-                            readOnly
+                            className="flex-1 px-4 py-2 border rounded-md"
+                            value={userInfo.name}
                             />
                     </div>
-
-                    <div className="flex items-center justify-between space-x-2 h-10">
-                        <label className="w-16">{t('txtPosition')}</label>
-                        <input
-                            type="text"
-                            className="px-3 py-2 border rounded-md bg-mono100"
-                            value={userInfo.position}
-                            readOnly
-                            />
-                    </div>
-                </div>
-                <div className="my-4 mt-8">
-                    <button className="transition-all duration-200 text-sm text-pale-blue500 hover:text-pale-blue300">
-                        {t('txtChangePassword')}
+                    <button className="h-full w-20 bg-pale-blue600 text-white rounded text-sm">
+                        {t('txtEdit')}
                     </button>
                 </div>
-            </div>        
+
+                <div className="flex items-center justify-between space-x-2 h-10">
+                    <div className="flex h-full items-center">
+                        <label className="w-16">{t('txtEmail')}</label>
+                        <input
+                            type="text"
+                            className="flex-1 px-4 py-2 border rounded-md bg-mono100 text-mono500"
+                            value={userInfo.email}
+                            readOnly
+                            />
+                    </div>
+                    <button 
+                        className="h-full w-20 bg-green600 text-white rounded text-sm"
+                        onClick={handleAuthRequest}
+                        >
+                        {t('txtAuth')}
+                    </button>
+                </div>
+                {/* Auth Code */}
+                { isRequestAuth &&
+                <div className="">
+                    <div className="flex items-center h-10">
+                        <div className="ml-auto flex h-full items-center">
+                        <label className="mx-4">{t('txtAuthCode')}</label>
+                        <input
+                            type="text"
+                            className="ml-auto w-32 mx-4 flex-1 px-1 py-2 border rounded-md"
+                            value={authCode}
+                            onChange={(e) => setAuthCode(e.target.value)}
+                        />
+                        </div>
+                        <button className="h-full w-20 bg-pale-blue600 text-white rounded text-sm">
+                        {t('txtCheck')}
+                        </button>
+                    </div>
+
+                    {/* 시간 표시 영역을 오른쪽 정렬 */}
+                    <div className="flex justify-end my-4">
+                        <span className="text-sm text-mono500">
+                        {t('txtTimeRemain')} : {remainingTime}
+                        </span>
+                    </div>
+                </div>
+                }
+
+                {/* Deparment */}
+                <div className="flex items-center justify-between space-x-2 h-10">
+                    <label className="w-16">{t('txtDepartment')}</label>
+                    <input
+                        type="text"
+                        className="px-3 py-2 border rounded-md bg-mono100"
+                        value={userInfo.department}
+                        readOnly
+                        />
+                </div>
+
+                <div className="flex items-center justify-between space-x-2 h-10">
+                    <label className="w-16">{t('txtPosition')}</label>
+                    <input
+                        type="text"
+                        className="px-3 py-2 border rounded-md bg-mono100"
+                        value={userInfo.position}
+                        readOnly
+                        />
+                </div>
+            </div>
+            <div className="my-4 mt-8">
+                <button className="transition-all duration-200 text-sm text-pale-blue500 hover:text-pale-blue300">
+                    {t('txtChangePassword')}
+                </button>
+            </div>
         </div>
     );
 }

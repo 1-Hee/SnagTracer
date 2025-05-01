@@ -43,8 +43,7 @@ const CreateWorkspace = () => {
     };
   
     return (
-      <div className="flex justify-center p-4">
-        <div className="w-full max-w-[712px] bg-white rounded-2xl shadow-md p-8">
+      <div className="justify-center p-6 shadow bg-white rounded-l max-w-4xl mx-auto">
         <h2 className="text-2xl font-semibold mb-4">{t('createWorkspace')}</h2>  
         <div className="border-t border-gray-300 mb-4 mt-7"></div>
   
@@ -121,7 +120,7 @@ const CreateWorkspace = () => {
             {t('txtCreate')}
           </button>
         </div>
-      </div>
+
       </div>
     );
 };

@@ -11,7 +11,11 @@ import IssueItem from "../units/IssueItem"
 const MyBookmarks = () => {
   const { t } = useTranslation();  // useTranslation hook;
 
-  const [userIssueList, setUserIssueList] = useState([]);
+  const [userIssueList, setUserIssueList] = useState([
+    {id:42663, title:'Issue 1', reporter: 'User 1', date: '2025-04-27', description: 'This is Issue 1', isRead: 'false'},
+    {id:34345, title:'Issue 2', reporter: 'User 2', date: '2025-04-27', description: 'This is Issue 2', isRead: 'true'},
+    {id:22456, title:'Issue 3', reporter: 'User 3', date: '2025-04-27', description: 'This is Issue 3', isRead: 'true'},
+  ]);
   const [searchQuery, setSearchQuery] = useState('');
   const [sortingOrder, setSortingOrder] = useState('asc'); // 정렬 순서
   const [userIssueCount, setUserIssueCount] = useState(0); // 로그인 한 사용자의 이슈 개수
@@ -35,8 +39,8 @@ const MyBookmarks = () => {
         {id:34345, title:'Issue 2', reporter: 'User 2', date: '2025-04-27', description: 'This is Issue 2', isRead: 'true'},
         {id:22456, title:'Issue 3', reporter: 'User 3', date: '2025-04-27', description: 'This is Issue 3', isRead: 'true'},
     ];
-    setUserIssueList((prev) => [...prev, ...fetchedBookmarks]); // 기존 이슈 목록에 새로운 작업실 목록 추가
-    setUserIssueCount(userIssueList.length + fetchedBookmarks.length);
+    // setUserIssueList((prev) => [...prev, ...fetchedBookmarks]); // 기존 이슈 목록에 새로운 작업실 목록 추가
+    // setUserIssueCount(userIssueList.length + fetchedBookmarks.length);
     setLoading(false);
   };
 
@@ -64,9 +68,8 @@ const MyBookmarks = () => {
   };
 
   return (
-    <div className='flex justify-center min-h-screen p-4'>
-        <div className="w-full max-w-[712px] bg-white rounded-2xl shadow-md p-8">
-            <h2 className="text-2xl font-semibold mb-6">{t('myBookmark')}</h2>
+    <div className='justify-center min-h-screen p-6 shadow bg-white rounded-l max-w-4xl mx-auto'>
+       <h2 className="text-2xl font-semibold mb-6">{t('myBookmark')}</h2>
             <div className="border-t border-gray-300 mb-6"></div>
             <div className="relative mb-6">
             <input
@@ -123,7 +126,6 @@ const MyBookmarks = () => {
                 ))}               
             </div>
             {loading && <div className="text-center mt-4">{t('txtLoading')}</div>}
-        </div>
     </div>
   );
 };

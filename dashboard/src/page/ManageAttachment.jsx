@@ -63,69 +63,65 @@ const ManageAttachment = () => {
   };
 
   return (
-    <div className='flex justify-center min-h-screen p-4'>
-        <div className="w-full max-w-[712px] bg-white rounded-2xl shadow-md p-8">
-            <h2 className="text-2xl font-semibold mb-6">{t('manageAttachment')}</h2>
-            <div className="border-t border-gray-300 mb-6"></div>
-            <div className="relative mb-6">
-            <input
-                type="text"
-                value={searchQuery}
-                onChange={handleSearchChange}
-                className="w-full p-2 pl-10 border border-mono300 rounded-xl"
-                placeholder={t('hintSearchAttachment')}
-            />
-            <HiSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-pale-blue500" size={20} />
-            </div>
-            {/* 첨부파일 개수 및 정렬 */}
-            <div className="flex justify-between mb-6 items-center">
-                <div className="text-sm">{t('txtCntAttachment')}: {itemAttachmentCount} {t('txtItems')}</div>
-                <div className="flex items-center">
-                <span className="mr-4 text-sm">{t('txtSortOrder')} :</span>
-                <select
-                    value={sortingOrder}
-                    onChange={handleSortChange}
-                    className="p-2 border border-mono300 rounded text-sm"
-                >
-                    {
-                        sortOptionList.map((option, index) => (
-                        <option key={index} value={option.optionKey}>
-                            {t(option.optionKey)} {/* option.optionKey에 해당하는 텍스트 출력 */}
-                        </option>
-                        ))
-                    }
-                </select>
-                </div>
-            </div>
+    <div className='justify-center min-h-screen p-6 shadow bg-white rounded-l max-w-4xl mx-auto'>
+      <h2 className="text-2xl font-semibold mb-6">{t('manageAttachment')}</h2>
+      <div className="border-t border-gray-300 mb-6"></div>
+      <div className="relative mb-6">
+      <input
+          type="text"
+          value={searchQuery}
+          onChange={handleSearchChange}
+          className="w-full p-2 pl-10 border border-mono300 rounded-xl"
+          placeholder={t('hintSearchAttachment')}
+      />
+      <HiSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-pale-blue500" size={20} />
+      </div>
+      {/* 첨부파일 개수 및 정렬 */}
+      <div className="flex justify-between mb-6 items-center">
+          <div className="text-sm">{t('txtCntAttachment')}: {itemAttachmentCount} {t('txtItems')}</div>
+          <div className="flex items-center">
+          <span className="mr-4 text-sm">{t('txtSortOrder')} :</span>
+          <select
+              value={sortingOrder}
+              onChange={handleSortChange}
+              className="p-2 border border-mono300 rounded text-sm"
+          >
+              {
+                  sortOptionList.map((option, index) => (
+                  <option key={index} value={option.optionKey}>
+                      {t(option.optionKey)} {/* option.optionKey에 해당하는 텍스트 출력 */}
+                  </option>
+                  ))
+              }
+          </select>
+          </div>
+      </div>
 
-            {/* 이슈 목록 */}
-            <div
-                className="space-y-3 overflow-y-auto max-h-[70vh]"
-                // onScroll={handleScroll}
-            >
-                {itemAttachmentList
-                .filter((item) =>
-                    item.title.toLowerCase().includes(searchQuery.toLowerCase())
-                )
-                .map((item) => (
-                    <div key={item.id} className="border p-4 rounded-md shadow-lg cursor-pointer transition-all duration-300 hover:bg-mono100">
-                    {/* IssueItem 컴포넌트 */}                    
-                      <ItemAttachment
-                            id = {item.id}
-                            title = {item.title}
-                            workpace = {item.workpace}
-                            date = {item.date}
-                            downloadKey = {item.downloadKey}
-                        />
-                    </div>
-                ))}               
-            </div>
-            {loading && <div className="text-center mt-4">{t('txtLoading')}</div>}
-        </div>
+      {/* 이슈 목록 */}
+      <div
+          className="space-y-3 overflow-y-auto max-h-[70vh]"
+          // onScroll={handleScroll}
+      >
+          {itemAttachmentList
+          .filter((item) =>
+              item.title.toLowerCase().includes(searchQuery.toLowerCase())
+          )
+          .map((item) => (
+              <div key={item.id} className="border p-4 rounded-md shadow-lg cursor-pointer transition-all duration-300 hover:bg-mono100">
+              {/* IssueItem 컴포넌트 */}                    
+                <ItemAttachment
+                      id = {item.id}
+                      title = {item.title}
+                      workpace = {item.workpace}
+                      date = {item.date}
+                      downloadKey = {item.downloadKey}
+                  />
+              </div>
+          ))}               
+      </div>
+      {loading && <div className="text-center mt-4">{t('txtLoading')}</div>}
     </div>
   );
 };
-
-
 
 export default ManageAttachment;
