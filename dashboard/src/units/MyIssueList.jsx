@@ -57,7 +57,9 @@ export default function MyIssueList() {
             className="h-80 overflow-y-auto divide-y divide-gray-200"
         >
             {displayIssues.map((issue, index) => (
-            <IssueItem key={index} {...issue} />
+                <div className="cursor-pointer transition-all duration-300 hover:bg-mono100 p-2 mt-2 mb-2">
+                    <IssueItem key={index} {...issue} />
+                </div>
             ))}
             {!hasMore && (
             <div className="text-center text-gray-400 py-2 text-sm">

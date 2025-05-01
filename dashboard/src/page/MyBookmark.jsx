@@ -78,7 +78,7 @@ const MyBookmarks = () => {
             />
             <HiSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-pale-blue500" size={20} />
             </div>
-            {/* 작업실 개수 및 정렬 */}
+            {/* 북마크 개수 및 정렬 */}
             <div className="flex justify-between mb-6 items-center">
                 <div className="text-sm">{t('txtCntIssue')}: {userIssueCount} {t('txtItems')}</div>
                 <div className="flex items-center">
@@ -101,7 +101,7 @@ const MyBookmarks = () => {
 
             {/* 이슈 목록 */}
             <div
-                className="space-y-6 overflow-y-auto max-h-[70vh]"
+                className="space-y-3 overflow-y-auto max-h-[70vh]"
                 // onScroll={handleScroll}
             >
                 {userIssueList
@@ -109,9 +109,9 @@ const MyBookmarks = () => {
                     issue.title.toLowerCase().includes(searchQuery.toLowerCase())
                 )
                 .map((issue) => (
-                    <div key={issue.id} className="border p-4 rounded-md shadow-lg">
-                    {/* IssueItem 컴포넌트 */}
-                        <IssueItem
+                    <div key={issue.id} className="border p-4 rounded-md shadow-lg cursor-pointer transition-all duration-300 hover:bg-mono100">
+                    {/* IssueItem 컴포넌트 */}                    
+                      <IssueItem
                             id = {issue.id}
                             title = {issue.title}
                             reporter = {issue.reporter}
@@ -120,10 +120,8 @@ const MyBookmarks = () => {
                             isRead = {issue.isRead}
                         />
                     </div>
-                ))}
-               
+                ))}               
             </div>
-
             {loading && <div className="text-center mt-4">{t('txtLoading')}</div>}
         </div>
     </div>
