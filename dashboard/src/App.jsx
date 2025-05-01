@@ -70,7 +70,18 @@ const App = () => {
           >
             <div className="p-4">
               <ul>
-                {sidebarItems.map((item, index) => <SidebarItem key={index} icon={item.icon} label={t(item.labelKey)} path={item.path}/>)}
+                {sidebarItems.map((item, index) => 
+                {
+                  if(index === 4){
+                    return <div>
+                      <div className="border-t border-gray-300 my-3"></div>
+                      <SidebarItem key={index} icon={item.icon} label={t(item.labelKey)} path={item.path}/>
+                    </div>
+                  }else {
+                    return <SidebarItem key={index} icon={item.icon} label={t(item.labelKey)} path={item.path}/>
+                  }                  
+                }
+                )}
               </ul>
             </div>
           </aside>
