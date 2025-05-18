@@ -18,6 +18,7 @@ import MyBookmark from "./page/MyBookmark"
 import ManageAttachment from "./page/ManageAttachment"
 import UserProfile from "./page/UserProfile"
 import ManageUser from "./page/ManageUser"
+import IssueDetailPage from "./page/IssueDetailPage"
 
 // assets
 import iconHome from './assets/ic_home.svg';
@@ -96,6 +97,7 @@ const App = () => {
               <Route path="/manageAttachment" element={<ManageAttachment/>} />
               <Route path="/myProfile" element={<UserProfile/>} />
               <Route path="/manageUser" element={<ManageUser/>} />
+              <Route path="/issueDetail/:issueId" element={<IssueDetailPage />} />                            
             </Routes>
           </main>
         </div>

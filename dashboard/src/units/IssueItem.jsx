@@ -1,9 +1,17 @@
 // libs
 import React  from "react";
+import { useNavigate } from 'react-router-dom';
 
 const IssueItem = ({ id, title, reporter, date, description, isRead }) => {
+  const navigate = useNavigate();
+  const handleClick = () => {
+    navigate(`/issueDetail/${id}`);
+  };
   return (
-    <div className="border-b last:border-b-0">
+    <div 
+      className="border-b last:border-b-0" 
+      onClick={handleClick}
+      >
       <div className={`mb-1 ${isRead ? "font-normal text-gray-800" : "font-bold text-blue-600"}`}>
         [{id}] {title}
       </div>

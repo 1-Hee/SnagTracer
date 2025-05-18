@@ -31,8 +31,8 @@ const MyWorkspace = () => {
   const loadWorkspaces = async () => {
     setLoading(true);
     const fetchedWorkspaces = [
-      { id: 1, title: 'Workspace 1', leader: 'Alice', memberCount: 3, issueCount: 2, participantCount: 5, issue: { title: 'Login Issue', date: '2025-04-01', author: 'User 1', content: 'Cannot login' } },
-      { id: 2, title: 'Workspace 2', leader: 'Bob', memberCount: 4, issueCount: 1, participantCount: 6, issue: { title: 'API Error', date: '2025-04-02', author: 'User 2', content: 'API is down' } }
+      { id: 1, title: 'Workspace 1', leader: 'Alice', memberCount: 3, issueCount: 2, participantCount: 5, issue: { issueId:1234, title: 'Login Issue', date: '2025-04-01', author: 'User 1', content: 'Cannot login' } },
+      { id: 2, title: 'Workspace 2', leader: 'Bob', memberCount: 4, issueCount: 1, participantCount: 6, issue: {  issueId:5678, title: 'API Error', date: '2025-04-02', author: 'User 2', content: 'API is down' } }
     ];
     setWorkspaces((prev) => [...prev, ...fetchedWorkspaces]); // 기존 작업실 목록에 새로운 작업실 목록 추가
     setLoading(false);
@@ -118,9 +118,9 @@ const MyWorkspace = () => {
 
               {/* 최신 이슈 목록 */}
               <div className="ml-4 mt-4">
-                  {
-                      
+                  {                      
                       <RecentIssue 
+                          id ={workspace.issue.issueId}
                           title = {workspace.issue.title}
                           date = {workspace.issue.date}
                           author = {workspace.issue.author}
