@@ -12,9 +12,9 @@ const MyBookmarkPage = () => {
   const { t } = useTranslation();  // useTranslation hook;
 
   const [userIssueList, setUserIssueList] = useState([
-    {id:42663, title:'Issue 1', reporter: 'User 1', date: '2025-04-27', description: 'This is Issue 1', isRead: 'false'},
-    {id:34345, title:'Issue 2', reporter: 'User 2', date: '2025-04-27', description: 'This is Issue 2', isRead: 'true'},
-    {id:22456, title:'Issue 3', reporter: 'User 3', date: '2025-04-27', description: 'This is Issue 3', isRead: 'true'},
+    {issueId:42663, title:'Issue 1', reporter: 'User 1', date: '2025-04-27', description: 'This is Issue 1', isRead: 'false'},
+    {issueId:34345, title:'Issue 2', reporter: 'User 2', date: '2025-04-27', description: 'This is Issue 2', isRead: 'true'},
+    {issueId:22456, title:'Issue 3', reporter: 'User 3', date: '2025-04-27', description: 'This is Issue 3', isRead: 'true'},
   ]);
   const [searchQuery, setSearchQuery] = useState('');
   const [sortingOrder, setSortingOrder] = useState('asc'); // 정렬 순서
@@ -28,7 +28,7 @@ const MyBookmarkPage = () => {
     { optionKey: "txtDesc" },
     { optionKey: "txtLatest" },
     { optionKey: "txtOldest" },
-    { optionKey: "txtImportance" },
+    { optionKey: "txtImportanceOrder" },
   ]);
 
   // 무한 스크롤을 위한 이슈 목록 로딩
@@ -111,19 +111,7 @@ const MyBookmarkPage = () => {
                 .filter((issue) =>
                     issue.title.toLowerCase().includes(searchQuery.toLowerCase())
                 )
-                .map((issue) => (
-                    <div key={issue.id} className="border p-4 rounded-md shadow-lg cursor-pointer transition-all duration-300 hover:bg-mono100">
-                    {/* IssueItem 컴포넌트 */}                    
-                      <IssueItem
-                            id = {issue.id}
-                            title = {issue.title}
-                            reporter = {issue.reporter}
-                            date = {issue.date}
-                            description = {issue.description}
-                            isRead = {issue.isRead}
-                        />
-                    </div>
-                ))}               
+                .map((issue) => (<IssueItem {...issue}/>))}               
             </div>
             {loading && <div className="text-center mt-4">{t('txtLoading')}</div>}
     </div>

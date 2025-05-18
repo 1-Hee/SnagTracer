@@ -9,7 +9,7 @@ export default function MyIssueList() {
     const { t } = useTranslation();  // useTranslation hook;
     
     const allIssues = Array.from({ length: 10 }).map((_, i) => ({
-        id: `44521${i}`,
+        issueId: `44521${i}`,
         title: `테스트 이슈 ${i + 1}`,
         reporter: `user${i}@test.com`,
         date: `2025-04-${String(i + 1).padStart(2, "0")}`,
@@ -47,26 +47,23 @@ export default function MyIssueList() {
 
     return (
         <div className="bg-white rounded-xl shadow-md p-6 mt-4">
-        <div className="flex justify-between items-center mb-4">
-            <h2 className="text-lg font-bold text-gray-800">{t('titleMyIssue')}</h2>
-            <span className="text-sm text-gray-500">{allIssues.length}{t('txtItems')}</span>
-        </div>
-
-        <div
-            ref={containerRef}
-            className="h-80 overflow-y-auto divide-y divide-gray-200"
-        >
-            {displayIssues.map((issue, index) => (
-                <div className="cursor-pointer transition-all duration-300 hover:bg-mono100 p-2 mt-2 mb-2">
-                    <IssueItem key={index} {...issue} />
-                </div>
-            ))}
-            {!hasMore && (
-            <div className="text-center text-gray-400 py-2 text-sm">
-                {t('prefixEndScroll')} {t('txtIssue')}{t('suffixEndScroll')}
+            <div className="flex justify-between items-center mb-4">
+                <h2 className="text-lg font-bold text-gray-800">{t('titleMyIssue')}</h2>
+                <span className="text-sm text-gray-500">{allIssues.length}{t('txtItems')}</span>
             </div>
-            )}
-        </div>
+            <div
+                ref={containerRef}
+                className="h-80 overflow-y-auto divide-y divide-mono200 space-y-2"
+                >
+                {displayIssues.map((issue, index) => (
+                    <IssueItem key={index} {...issue} />
+                ))}
+                {!hasMore && (
+                    <div className="text-center text-gray-400 py-2 text-sm">
+                    {t('prefixEndScroll')} {t('txtIssue')}{t('suffixEndScroll')}
+                    </div>
+                )}
+            </div>
         </div>
     );
 }

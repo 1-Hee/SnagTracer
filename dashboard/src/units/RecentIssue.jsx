@@ -2,15 +2,15 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const RecentIssue = ({id, title, date, author, content}) => {
+const RecentIssue = ({ issueId, title, date, author, content}) => {
     const navigate = useNavigate();
-    const handleClick = () => {
-        navigate(`/issueDetail/${id}`);
+    const handleIssueClick = () => {
+        navigate(`/issueDetail/${issueId}`);
     };    
     return (
         <div 
         className="cursor-pointer p-2 transition-all duration-300 hover:bg-mono100 mb-4 p-4 rounded-md"
-        onClick={handleClick}
+        onClick={handleIssueClick}
         >
             <div className="flex justify-between items-center">
                 <div className="flex items-center mb-2">

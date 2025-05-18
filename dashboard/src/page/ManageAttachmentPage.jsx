@@ -31,7 +31,14 @@ const ManageAttachmentPage = () => {
   const loadItemAttachmentList = async () => {
     setLoading(true);
     const fetchedItemAttachment = [
-        { id:42663, title:'[이슈] 로그인 오류 안내 메일', workpace: 'Login System', date: '2025-04-27', downloadKey: 'test1234' },
+        { 
+          issueId:42663, 
+          title:'[이슈] 로그인 오류 안내 메일', 
+          workpace: 'Login System', 
+          date: '2025-04-27', 
+          downloadKey: 'test1234', 
+          attachmentId:'1234',
+        },
     ];
     setItemAttachmentList((prev) => [...prev, ...fetchedItemAttachment]); // 기존 이슈 목록에 새로운 작업실 목록 추가
 
@@ -109,13 +116,7 @@ const ManageAttachmentPage = () => {
           .map((item) => (
               <div key={item.id} className="border p-4 rounded-md shadow-lg cursor-pointer transition-all duration-300 hover:bg-mono100">
               {/* IssueItem 컴포넌트 */}                    
-                <ItemAttachment
-                      id = {item.id}
-                      title = {item.title}
-                      workpace = {item.workpace}
-                      date = {item.date}
-                      downloadKey = {item.downloadKey}
-                  />
+                <ItemAttachment {...item}/>
               </div>
           ))}               
       </div>

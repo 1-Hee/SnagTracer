@@ -1,10 +1,16 @@
 import React, { useState, useEffect, useRef } from "react";
+import { useNavigate } from 'react-router-dom';
 import { useTranslation } from "react-i18next";
 
-export default function WorkspaceItem({ title, leader, memberCount, issueCount, participantCount }) {
+const WorkspaceItem = ({ workId, title, leader, memberCount, issueCount, participantCount }) => {
+    const navigate = useNavigate();
+    const handleWorkspaceClick = () => {
+        navigate(`/workspace/${workId}`);
+    };        
     const { t } = useTranslation();  // useTranslation hook;    
     return (
-        <div className="cursor-pointer p-2 transition-all duration-300 hover:bg-mono100 rounded-md flex items-center justify-between py-4 border-b last:border-b-0">
+        <div className="cursor-pointer p-2 transition-all duration-300 hover:bg-mono100 rounded-md flex items-center justify-between py-4 border-b last:border-b-0"
+            onClick={handleWorkspaceClick}>
             <div>
                 <div className="text-md font-semibold text-gray-800">{title}</div>
                 <div className="text-sm text-gray-500 mt-1">
@@ -20,3 +26,5 @@ export default function WorkspaceItem({ title, leader, memberCount, issueCount, 
         </div>
     );
 }
+
+export default WorkspaceItem;
