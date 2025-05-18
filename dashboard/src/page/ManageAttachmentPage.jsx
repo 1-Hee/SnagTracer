@@ -6,16 +6,16 @@ import { useTranslation } from "react-i18next";
 import { HiSearch } from 'react-icons/hi'; //
 
 // components
-import WorkspaceItem from '../units/WorkspaceItem'; 
-import RecentIssue from "../units/RecentIssue"
+import ItemAttachment from "../units/ItemAttachment"
 
-const MyWorkspace = () => {
+const ManageAttachmentPage = () => {
   const { t } = useTranslation();  // useTranslation hook;
 
-  const [workspaces, setWorkspaces] = useState([]);
+  // fetchedItemAttachment
+  const [itemAttachmentList, setItemAttachmentList] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [sortingOrder, setSortingOrder] = useState('asc'); // 정렬 순서
-  const [userWorkspacesCount, setUserWorkspacesCount] = useState(0); // 로그인 한 사용자의 작업실 개수
+  const [itemAttachmentCount, setItemAttachmentCount] = useState(0); // 로그인 한 사용자의 이슈 개수
   const [page, setPage] = useState(1); // 무한 스크롤을 위한 페이지 번호
   const [loading, setLoading] = useState(false); // 로딩 상태
 
@@ -25,22 +25,23 @@ const MyWorkspace = () => {
     { optionKey: "txtDesc" },
     { optionKey: "txtLatest" },
     { optionKey: "txtOldest" },
-  ]);  
+  ]);
 
-  // 무한 스크롤을 위한 작업실 목록 로딩
-  const loadWorkspaces = async () => {
+  // 무한 스크롤을 위한 첨부파일 목록 로딩
+  const loadItemAttachmentList = async () => {
     setLoading(true);
-    const fetchedWorkspaces = [
-      { id: 1, title: 'Workspace 1', leader: 'Alice', memberCount: 3, issueCount: 2, participantCount: 5, issue: { issueId:1234, title: 'Login Issue', date: '2025-04-01', author: 'User 1', content: 'Cannot login' } },
-      { id: 2, title: 'Workspace 2', leader: 'Bob', memberCount: 4, issueCount: 1, participantCount: 6, issue: {  issueId:5678, title: 'API Error', date: '2025-04-02', author: 'User 2', content: 'API is down' } }
+    const fetchedItemAttachment = [
+        { id:42663, title:'[이슈] 로그인 오류 안내 메일', workpace: 'Login System', date: '2025-04-27', downloadKey: 'test1234' },
     ];
-    setWorkspaces((prev) => [...prev, ...fetchedWorkspaces]); // 기존 작업실 목록에 새로운 작업실 목록 추가
+    setItemAttachmentList((prev) => [...prev, ...fetchedItemAttachment]); // 기존 이슈 목록에 새로운 작업실 목록 추가
+
+    setItemAttachmentCount(userIssueList.length + fetchedBookmarks.length);
     setLoading(false);
   };
 
-  // 페이지 로딩 시 작업실 목록 가져오기
+  // 페이지 로딩 시 첨부파일 목록 가져오기
   useEffect(() => {
-    loadWorkspaces();
+    loadItemAttachmentList();
   }, [page]);
 
   // 검색창 업데이트
@@ -63,7 +64,7 @@ const MyWorkspace = () => {
 
   return (
     <div className='justify-center min-h-screen p-6 shadow bg-white rounded-l max-w-4xl mx-auto'>
-      <h2 className="text-2xl font-semibold mb-6">{t('myWorkspace')}</h2>
+      <h2 className="text-2xl font-semibold mb-6">{t('manageAttachment')}</h2>
       <div className="border-t border-gray-300 mb-6"></div>
       <div className="relative mb-6">
       <input
@@ -71,13 +72,13 @@ const MyWorkspace = () => {
           value={searchQuery}
           onChange={handleSearchChange}
           className="w-full p-2 pl-10 border border-mono300 rounded-xl"
-          placeholder={t('hintSearchWorkpsace')}
+          placeholder={t('hintSearchAttachment')}
       />
       <HiSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-pale-blue500" size={20} />
       </div>
-      {/* 작업실 개수 및 정렬 */}
+      {/* 첨부파일 개수 및 정렬 */}
       <div className="flex justify-between mb-6 items-center">
-          <div className="text-sm">{t('txtCntWorkpsace')}: {userWorkspacesCount} {t('txtItems')}</div>
+          <div className="text-sm">{t('txtCntAttachment')}: {itemAttachmentCount} {t('txtItems')}</div>
           <div className="flex items-center">
           <span className="mr-4 text-sm">{t('txtSortOrder')} :</span>
           <select
@@ -96,44 +97,31 @@ const MyWorkspace = () => {
           </div>
       </div>
 
-      {/* 작업실 목록 */}
+      {/* 이슈 목록 */}
       <div
-          className="space-y-6 overflow-y-auto max-h-[70vh]"
+          className="space-y-3 overflow-y-auto max-h-[70vh]"
           // onScroll={handleScroll}
       >
-          {workspaces
-          .filter((workspace) =>
-              workspace.title.toLowerCase().includes(searchQuery.toLowerCase())
+          {itemAttachmentList
+          .filter((item) =>
+              item.title.toLowerCase().includes(searchQuery.toLowerCase())
           )
-          .map((workspace) => (
-              <div key={workspace.id} className="border p-4 rounded-md shadow-lg">
-              {/* WorkspaceItem 컴포넌트 */}
-              <WorkspaceItem 
-                  title={workspace.title}
-                  leader={workspace.leader}
-                  memberCount={workspace.memberCount}
-                  issueCount={workspace.issueCount}
-                  participantCount={workspace.participantCount}
-              />
-
-              {/* 최신 이슈 목록 */}
-              <div className="ml-4 mt-4">
-                  {                      
-                      <RecentIssue 
-                          id ={workspace.issue.issueId}
-                          title = {workspace.issue.title}
-                          date = {workspace.issue.date}
-                          author = {workspace.issue.author}
-                          content = {workspace.issue.content}
-                      />
-                  }
+          .map((item) => (
+              <div key={item.id} className="border p-4 rounded-md shadow-lg cursor-pointer transition-all duration-300 hover:bg-mono100">
+              {/* IssueItem 컴포넌트 */}                    
+                <ItemAttachment
+                      id = {item.id}
+                      title = {item.title}
+                      workpace = {item.workpace}
+                      date = {item.date}
+                      downloadKey = {item.downloadKey}
+                  />
               </div>
-              </div>
-          ))}
+          ))}               
       </div>
       {loading && <div className="text-center mt-4">{t('txtLoading')}</div>}
     </div>
   );
 };
 
-export default MyWorkspace;
+export default ManageAttachmentPage;

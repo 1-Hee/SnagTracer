@@ -7,7 +7,7 @@ import { useTranslation } from "react-i18next";
 // components
 import JoinMember from "../units/JoinMember"
 
-const CreateWorkspace = () => {
+const CreateWorkspacePage = () => {
     const { t } = useTranslation();  // useTranslation hook;    
 
     const [projectName, setProjectName] = useState('');
@@ -125,4 +125,4 @@ const CreateWorkspace = () => {
     );
 };
 
-export default CreateWorkspace;
+export default CreateWorkspacePage;

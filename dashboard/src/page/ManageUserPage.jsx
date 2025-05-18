@@ -2,10 +2,8 @@
 import React, { useState } from "react";
 import { useTranslation } from "react-i18next";
 
-
 // assets
 import { HiSearch } from 'react-icons/hi'; //
-
 
 // type User = {
 //   id: number;
@@ -54,7 +52,7 @@ const users = [
       })),
 ];
 
-const ManageUser = () => {
+const ManageUserPage = () => {
     const { t } = useTranslation();  // useTranslation hook;
 
     const [currentPage, setCurrentPage] = useState(1);
@@ -198,5 +196,4 @@ const ManageUser = () => {
   );
 }
 
-
-export default ManageUser;
+export default ManageUserPage;

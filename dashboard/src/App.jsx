@@ -11,14 +11,15 @@ import NotificationIcon from "./units/NotificationIcon";
 
 // pages
 import HomePage from "./page/HomePage"
-import MyWorkspace from "./page/MyWorkspace"
-import CreateWorkspace from "./page/CreateWorkspace"
-import AddIssue from "./page/AddIssue"
-import MyBookmark from "./page/MyBookmark"
-import ManageAttachment from "./page/ManageAttachment"
-import UserProfile from "./page/UserProfile"
-import ManageUser from "./page/ManageUser"
-import IssueDetailPage from "./page/IssueDetailPage"
+import MyWorkspacePage from "./page/MyWorkspacePage"
+import CreateWorkspacePage from "./page/CreateWorkspacePage"
+import AddIssuePage from "./page/AddIssuePage"
+import MyBookmarkPage from "./page/MyBookmarkPage"
+import ManageAttachmentPage from "./page/ManageAttachmentPage"
+import UserProfilePage from "./page/UserProfilePage"
+import ManageUserPage from "./page/ManageUserPage"
+import IssueViewPage from "./page/IssueViewPage"
+import WorkspaceViewPage from "./page/WorkspaceViewPage"
 
 // assets
 import iconHome from './assets/ic_home.svg';
@@ -90,14 +91,15 @@ const App = () => {
           <main className="flex-1 bg-gray-50 p-6 overflow-auto">
             <Routes>
               <Route path="/" element={<HomePage/>} />
-              <Route path="/myWorkspace" element={<MyWorkspace/>} />
-              <Route path="/createWorkspace" element={<CreateWorkspace/>} />
-              <Route path="/addIssue" element={<AddIssue/>} />
-              <Route path="/myBookmark" element={<MyBookmark/>} />
-              <Route path="/manageAttachment" element={<ManageAttachment/>} />
-              <Route path="/myProfile" element={<UserProfile/>} />
-              <Route path="/manageUser" element={<ManageUser/>} />
-              <Route path="/issueDetail/:issueId" element={<IssueDetailPage />} />                            
+              <Route path="/myWorkspace" element={<MyWorkspacePage/>} />
+              <Route path="/createWorkspace" element={<CreateWorkspacePage/>} />
+              <Route path="/addIssue" element={<AddIssuePage/>} />
+              <Route path="/myBookmark" element={<MyBookmarkPage/>} />
+              <Route path="/manageAttachment" element={<ManageAttachmentPage/>} />
+              <Route path="/myProfile" element={<UserProfilePage/>} />
+              <Route path="/manageUser" element={<ManageUserPage/>} />
+              <Route path="/issueDetail/:issueId" element={<IssueViewPage />} />        
+              <Route path="/workspace/:workspaceId" element={<WorkspaceViewPage/>} />                    
             </Routes>
           </main>
         </div>

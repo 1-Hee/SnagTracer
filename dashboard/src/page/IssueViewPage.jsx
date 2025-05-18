@@ -17,7 +17,7 @@ import StatusBadge from "../units/StatusBadge"
 
 const testUrl = "https://www.adobe.com/support/products/enterprise/knowledgecenter/media/c4611_sample_explain.pdf"
 
-export default function IssueDetailPage() {
+const IssueViewPage = () => {
     const { issueId } = useParams();
     const navigate = useNavigate();
 
@@ -110,3 +110,4 @@ export default function IssueDetailPage() {
   );
 }
 
+export default IssueViewPage
