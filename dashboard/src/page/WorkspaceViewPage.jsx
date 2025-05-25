@@ -1,6 +1,6 @@
 // libs
 import React, { useEffect } from "react";
-import { useParams, useNavigate } from 'react-router-dom';
+import { useSearchParams, useNavigate } from 'react-router-dom';
 import { Pencil, Trash2 } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
@@ -77,7 +77,8 @@ const profileWorkspace = {
 }
 
 const WorkspaceViewPage = () => {
-    const { workspaceId } = useParams();
+    const [searchParams] = useSearchParams();
+    const workspaceId = searchParams.get("workId");     // '1234'  
     const navigate = useNavigate();
     const { t } = useTranslation();  // useTranslation hook;
 

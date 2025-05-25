@@ -1,6 +1,6 @@
 // libs
 import React, { useState, useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useSearchParams, useNavigate } from 'react-router-dom';
 import { Star, Trash2, Pencil, X } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
@@ -11,6 +11,7 @@ import JoinMember from '../units/JoinMember';
 import InfoRow from "../units/InfoRow"
 import StatusBadge from "../units/StatusBadge"
 import PDFViewModal from "../units/PDFViewModal"
+import ConfirmDialog from '../units/ConfirmDialog';
 
 // TODO 
 // 2. PDF Viewer 다이얼로그 창 디자인 최적화
@@ -18,12 +19,25 @@ import PDFViewModal from "../units/PDFViewModal"
 const testUrl = "https://www.adobe.com/support/products/enterprise/knowledgecenter/media/c4611_sample_explain.pdf"
 
 const IssueViewPage = () => {
-    const { issueId } = useParams();
+    // const { issueId } = useParams();
+    const [searchParams] = useSearchParams();
+    const issueId = searchParams.get("issueId");     // '1234'
+
     const navigate = useNavigate();
     const { t } = useTranslation();  // useTranslation hook;    
 
     const [pdfUrl, setPdfUrl] = useState(testUrl); // 나중에 백엔드에서 생성하는 url과 연동하기
     const [showPdf, setShowPdf] = useState(false);
+    const [showDeleteDialog, setShowDeleteDialog] = useState(false);
+
+    // delete dailog info
+    const contentInfo = {
+        title : "경고 알림창",
+        content : "정말로 현재 등록된 이슈를 삭제하시겠어요?\n이 작업은 되돌릴 수 없으며, [삭제] 후에는 해당 이슈 정보를 열람하실 수 없습니다.\n",
+        cancel: "취소",
+        ok:"삭제",
+        isDanger : true
+    }
 
     // loaded issue info (dummy)
     const loadedIssueInfo = {
@@ -49,7 +63,7 @@ const IssueViewPage = () => {
         const isValidId = /^\d+$/.test(issueId);
         if (!isValidId) {
             alert(t('txtWrongPath'));
-            navigate('/') // todo 404
+            navigate('/home') // todo 404
         }
       }, [issueId, navigate]);
 
@@ -59,7 +73,12 @@ const IssueViewPage = () => {
             <h1 className="text-xl font-semibold">{t('titleIssueView')}</h1>
             <div className="flex items-center space-x-3">
             <Star className="w-5 h-5 text-gray-400 hover:text-yellow-500 cursor-pointer" />
-            <Trash2 className="w-5 h-5 text-gray-400 hover:text-red-500 cursor-pointer" />
+            <Trash2 
+                className="w-5 h-5 text-gray-400 hover:text-red-500 cursor-pointer" 
+                onClick={(e)=>{
+                    setShowDeleteDialog(true)
+                }}
+                />
             </div>
         </div>
 
@@ -109,6 +128,20 @@ const IssueViewPage = () => {
         </div>
         {/* PDF Modal */}
         {showPdf && ( <PDFViewModal pdfUrl={loadedIssueInfo.pdfUrl} setShowPdf={setShowPdf} /> )}
+        { 
+            showDeleteDialog && (        
+            <ConfirmDialog
+                isOpen={showDeleteDialog}
+                onCancel={() => setShowDeleteDialog(false)}
+                onDelete={() => {
+                    // 삭제 로직 실행
+                    setShowDeleteDialog(false);
+                    alert('삭제되었습니다.');
+                }}
+                contentInfo = {contentInfo}
+            />
+            )
+        }
         </div>
   );
 }
