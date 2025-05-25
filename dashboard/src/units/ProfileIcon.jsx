@@ -7,7 +7,7 @@ function ProfileIcon() {
   const [profileImgSrc, setProfileImgSrc] = useState('https://picsum.photos/200');  
 
   const handleProfileClick = () => {
-    navigate("/myProfile"); // 프로필 수정 페이지로 이동
+    navigate(`/home?menu=myProfile`); // 프로필 수정 페이지로 이동
   };
 
   return (

@@ -16,7 +16,8 @@ const ItemAttachment = ({ issueId, title, workpace, date, downloadKey, attachmen
 
   const handleIssueClick = (isRoute) => {
     if(isRoute){
-      navigate(`/issueDetail/${issueId}`);
+      // navigate(`/issueDetail/${issueId}`);
+      navigate(`/home?menu=issueDetail&issueId=${issueId}`);
     }
   };
   return (

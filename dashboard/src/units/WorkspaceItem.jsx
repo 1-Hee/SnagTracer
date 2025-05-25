@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 const WorkspaceItem = ({ workId, title, leader, memberCount, issueCount, participantCount }) => {
     const navigate = useNavigate();
     const handleWorkspaceClick = () => {
-        navigate(`/workspace/${workId}`);
+        navigate(`/home?menu=workspace&workId=${workId}`);
     };        
     const { t } = useTranslation();  // useTranslation hook;    
     return (

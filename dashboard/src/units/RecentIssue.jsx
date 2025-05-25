@@ -5,7 +5,8 @@ import { useNavigate } from 'react-router-dom';
 const RecentIssue = ({ issueId, title, date, author, content}) => {
     const navigate = useNavigate();
     const handleIssueClick = () => {
-        navigate(`/issueDetail/${issueId}`);
+        // navigate(`/issueDetail/${issueId}`);
+        navigate(`/home?menu=issueDetail&issueId=${issueId}`);        
     };    
     return (
         <div 

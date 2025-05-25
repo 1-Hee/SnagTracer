@@ -5,7 +5,10 @@ import { useNavigate } from 'react-router-dom';
 const IssueItem = ({ issueId, title, reporter, date, description, isRead }) => {
   const navigate = useNavigate();
   const handleIssueClick = () => {
-    navigate(`/issueDetail/${issueId}`);
+    // navigate(`/issueDetail/${issueId}`);
+    // navigate(`home?menu=issueDetail&id=${issueId}`);
+    navigate(`/home?menu=issueDetail&issueId=${issueId}`);
+    // No routes matched location "/home/home?menu=issueDetail&id=42663"
   };
   return (
     <div className="border p-4 rounded-md shadow-lg cursor-pointer transition-all duration-300 hover:bg-mono100">
