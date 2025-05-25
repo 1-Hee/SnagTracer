@@ -97,7 +97,6 @@ i18n
           "txtCreateAt": "Date Created",
           "txtIssueList": "Issue List",
           "txtCases" : "cases",
-
           "txtWrongPath": "Invalid path",
           "titleIssueView": "Issue Viewer",
           "txtPublisher": "Posted By",
@@ -105,6 +104,20 @@ i18n
           "txtIssueStatus": "Issue Status",
           "attachedEmail": "Attached Email",
           "attachedPDF": "Attached PDF",
+
+          "titleLogin": "User Login",
+          "txtUserId": "Username",
+          "hintUserId": "Enter your username",
+          "txtUserPwd": "Password",
+          "hintUserPwd": "Enter your password",
+          "txtShowPwd": "Show password",
+          "txtUserLogin": "Login",
+          "txtFindUserId": "Find Username",
+          "txtFindUserPwd": "Find Password",
+          "txtOr": "or",
+          "txtLoginGoogle": "Login with Google",
+          "hintUserJoin": "Don't have an account?",
+          "txtUserJoin": "Sign Up"
 
         },
       },
@@ -199,7 +212,6 @@ i18n
           "txtCreateAt": "생성 일자",
           "txtIssueList": "이슈 목록",
           "txtCases" : "건",
-
           "txtWrongPath": "잘못된 경로입니다.",                    
           "titleIssueView": "이슈 뷰어",
           "txtPublisher": "게시자",
@@ -207,6 +219,20 @@ i18n
           "txtIssueStatus": "이슈 상태",
           "attachedEmail": "첨부된 이메일",
           "attachedPDF": "첨부된 PDF",
+
+          "titleLogin": "사용자 로그인",
+          "txtUserId": "아이디",
+          "hintUserId": "아이디를 입력하세요",
+          "txtUserPwd": "비밀번호",
+          "hintUserPwd": "비밀번호를 입력하세요",
+          "txtShowPwd": "비밀번호 보기",        
+          "txtUserLogin": "로그인",
+          "txtFindUserId": "아이디 찾기",
+          "txtFindUserPwd": "비밀번호 찾기",
+          "txtOr": "또는",
+          "txtLoginGoogle": "Google 계정으로 로그인",
+          "hintUserJoin": "계정이 없으신가요?",
+          "txtUserJoin": "회원가입",
         
         },
       },
