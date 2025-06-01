@@ -23,7 +23,7 @@ const emailList = [
     },
 ];
 
-const AddIssuePage = () => {    
+const AddIssueSection = () => {    
     const { t } = useTranslation();  // useTranslation hook;
     
     return (
@@ -31,4 +31,4 @@ const AddIssuePage = () => {
     )
 }
 
-export default AddIssuePage;
+export default AddIssueSection;

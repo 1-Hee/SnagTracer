@@ -52,7 +52,7 @@ const users = [
       })),
 ];
 
-const ManageUserPage = () => {
+const ManageUserSection = () => {
     const { t } = useTranslation();  // useTranslation hook;
 
     const [currentPage, setCurrentPage] = useState(1);
@@ -61,7 +61,6 @@ const ManageUserPage = () => {
     const handleSearchChange = (event) => {
         setSearchQuery(event.target.value);
     };
-
 
     const usersPerPage = 10;
   
@@ -141,13 +140,13 @@ const ManageUserPage = () => {
                       className="bg-green-500 text-white text-xs px-3 py-1 rounded"
                       onClick={() => handleApprove(user.id)}
                     >
-                      승인
+                      {t('txtApproval')}
                     </button>
                     <button
                       className="bg-red-500 text-white text-xs px-3 py-1 rounded"
                       onClick={() => handleReject(user.id)}
                     >
-                      거절
+                      {t('txtRefusal')}
                     </button>
                   </>
                 ) : (
@@ -155,7 +154,7 @@ const ManageUserPage = () => {
                     className="bg-gray-300 text-gray-800 text-xs px-3 py-1 rounded"
                     onClick={() => handleCancel(user.id)}
                   >
-                    승인 취소
+                    {t('txtCancelApproval')}
                   </button>
                 )}
               </td>
@@ -171,7 +170,7 @@ const ManageUserPage = () => {
           disabled={currentPage === 1}
           className="px-3 py-1 text-sm border rounded disabled:opacity-30"
         >
-          이전
+          {t('txtPrev')}
         </button>
         {Array.from({ length: totalPages }, (_, i) => (
           <button
@@ -189,11 +188,11 @@ const ManageUserPage = () => {
           disabled={currentPage === totalPages}
           className="px-3 py-1 text-sm border rounded disabled:opacity-30"
         >
-          다음
+          {t('txtNext')}
         </button>
       </div>
     </div>
   );
 }
 
-export default ManageUserPage;
+export default ManageUserSection;

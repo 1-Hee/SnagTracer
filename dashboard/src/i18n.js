@@ -104,7 +104,6 @@ i18n
           "txtIssueStatus": "Issue Status",
           "attachedEmail": "Attached Email",
           "attachedPDF": "Attached PDF",
-
           "titleLogin": "User Login",
           "txtUserId": "Username",
           "hintUserId": "Enter your username",
@@ -112,12 +111,18 @@ i18n
           "hintUserPwd": "Enter your password",
           "txtShowPwd": "Show password",
           "txtUserLogin": "Login",
-          "txtFindUserId": "Find Username",
-          "txtFindUserPwd": "Find Password",
+          "txtFindUserId": "Find id",
+          "txtFindUserPwd": "Find password",
           "txtOr": "or",
           "txtLoginGoogle": "Login with Google",
           "hintUserJoin": "Don't have an account?",
-          "txtUserJoin": "Sign Up"
+          "txtUserJoin": "Sign Up",
+
+          "txtApproval": "Approve",
+          "txtRefusal": "Reject",
+          "txtCancelApproval": "Cancel Approval",
+          "txtPrev": "Prev",
+          "txtNext": "Next",
 
         },
       },
@@ -219,7 +224,6 @@ i18n
           "txtIssueStatus": "이슈 상태",
           "attachedEmail": "첨부된 이메일",
           "attachedPDF": "첨부된 PDF",
-
           "titleLogin": "사용자 로그인",
           "txtUserId": "아이디",
           "hintUserId": "아이디를 입력하세요",
@@ -233,6 +237,12 @@ i18n
           "txtLoginGoogle": "Google 계정으로 로그인",
           "hintUserJoin": "계정이 없으신가요?",
           "txtUserJoin": "회원가입",
+
+          "txtApproval": "승인",
+          "txtRefusal": "거절",
+          "txtCancelApproval": "승인 취소",
+          "txxPrev": "이전",
+          "txtNext": "다음",
         
         },
       },

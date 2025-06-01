@@ -8,7 +8,7 @@ import { HiSearch } from 'react-icons/hi'; //
 // components
 import IssueItem from "../units/IssueItem"
 
-const MyBookmarkPage = () => {
+const MyBookmarkSection = () => {
   const { t } = useTranslation();  // useTranslation hook;
 
   const [userIssueList, setUserIssueList] = useState([
@@ -118,4 +118,4 @@ const MyBookmarkPage = () => {
   );
 };
 
-export default MyBookmarkPage;
+export default MyBookmarkSection;

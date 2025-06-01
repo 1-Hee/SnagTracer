@@ -5,22 +5,22 @@ import { useSearchParams } from "react-router-dom";
 import { logout } from "../auth"
 
 // components
-import SidebarItem from ".././units/SidebarItem";
-import LanguageSwitcher from ".././units/LanguageSwitcher"
-import ProfileIcon from ".././units/ProfileIcon";
-import NotificationIcon from ".././units/NotificationIcon";
+import SidebarItem from "../units/SidebarItem";
+import LanguageSwitcher from "../units/LanguageSwitcher"
+import ProfileIcon from "../units/ProfileIcon";
+import NotificationIcon from "../units/NotificationIcon";
 
 // pages
-import HomePage from "./HomePage"
-import MyWorkspacePage from "./MyWorkspacePage"
-import CreateWorkspacePage from "./CreateWorkspacePage"
-import AddIssuePage from "./AddIssuePage"
-import MyBookmarkPage from "./MyBookmarkPage"
-import ManageAttachmentPage from "./ManageAttachmentPage"
-import UserProfilePage from "./UserProfilePage"
-import ManageUserPage from "./ManageUserPage"
-import IssueViewPage from "./IssueViewPage"
-import WorkspaceViewPage from "./WorkspaceViewPage"
+import AddIssueSection from "../section/AddIssueSection"
+import CreateWorkspaceSection from "../section/CreateWorkspaceSection"
+import HomeSection from "../section/HomeSection"
+import IssueViewSection from "../section/IssueViewSection"
+import ManageAttachmentSection from "../section/ManageAttachmentSection"
+import ManageUserSection from "../section/ManageUserSection"
+import MyBookmarkSection from "../section/MyBookmarkSection"
+import MyWorkspaceSection from "../section/MyWorkspaceSection"
+import UserProfileSection from "../section/UserProfileSection"
+import WorkspaceViewSection from "../section/WorkspaceViewSection"
 
 // assets
 import iconHome from '.././assets/ic_home.svg';
@@ -43,7 +43,7 @@ const sidebarItems = [
   { icon: iconManageUser, labelKey: "manageUser", menuName:"manageUser" },
 ];
 
-const MainLayout = () => {
+const MainPage = () => {
     const { t } = useTranslation();  // useTranslation hook;
     const [isSideOpen, setIsSideOpen] = useState(true);
     const [searchParams] = useSearchParams();
@@ -51,26 +51,26 @@ const MainLayout = () => {
 
     const renderContent = () => { // 컴포넌트 렌더링 함수
         switch (menu) {
-          case "myWorkspace":
-            return <MyWorkspacePage/>
-          case "createWorkspace":
-            return <CreateWorkspacePage/>
           case "addIssue":
-            return <AddIssuePage/>
-          case "myBookmark":
-            return <MyBookmarkPage/>
-          case "manageAttachment":
-            return <ManageAttachmentPage/>
-          case "myProfile":
-            return <UserProfilePage/>
-          case "manageUser":
-            return <ManageUserPage/>
+            return <AddIssueSection/>
+          case "createWorkspace":
+            return <CreateWorkspaceSection/>
           case "issueDetail":
-            return <IssueViewPage />
+            return <IssueViewSection />
+          case "manageAttachment":
+            return <ManageAttachmentSection/>
+          case "manageUser":
+            return <ManageUserSection />
+          case "myBookmark":
+            return <MyBookmarkSection/>
+          case "myWorkspace":
+            return <MyWorkspaceSection/>
+          case "myProfile":
+            return <UserProfileSection/>
           case "workspace":
-            return <WorkspaceViewPage/>
+            return <WorkspaceViewSection/>
           default:
-            return <HomePage/>
+            return <HomeSection/>
         }
       };
 
@@ -105,11 +105,21 @@ const MainLayout = () => {
                 {
                   if(index === 4){
                     return <div>
-                      <div className="border-t border-gray-300 my-3"></div>
-                      <SidebarItem key={index} icon={item.icon} label={t(item.labelKey)} menuName={item.menuName}/>
-                    </div>
+                            <div className="border-t border-gray-300 my-3"></div>
+                            <SidebarItem 
+                              key={index} 
+                              icon={item.icon} 
+                              label={t(item.labelKey)} 
+                              menuName={item.menuName}
+                              />
+                          </div>
                   }else {
-                    return <SidebarItem key={index} icon={item.icon} label={t(item.labelKey)} menuName={item.menuName}/>
+                    return <SidebarItem 
+                              key={index} 
+                              icon={item.icon} 
+                              label={t(item.labelKey)} 
+                              menuName={item.menuName}
+                              />
                   }                  
                 }
                 )}
@@ -125,4 +135,4 @@ const MainLayout = () => {
     )
 }
 
-export default MainLayout;
+export default MainPage;

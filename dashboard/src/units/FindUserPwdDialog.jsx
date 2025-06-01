@@ -1,7 +1,7 @@
 // 📁 components/user/FindUserPwdDialog.jsx
 import React, { useState, useEffect } from 'react';
 
-const FindUserPwdDialog = () => {
+const FindUserPwdDialog = ({onVerified}) => {
   const [id, setId] = useState('');
   const [email, setEmail] = useState('');
   const [code, setCode] = useState('');

@@ -6,31 +6,24 @@ import { isAuthenticated, logout } from './auth';
 // assets
 
 // components
-import LoginDialog from './units/LoginDialog';
-import MainLayout from './page/MainLayout';
+import LoginPage from './page/LoginPage';
+import MainPage from './page/MainPage';
 
-import RegisterDialog from './units/RegisterDialog';
-import FindUserIdDialog from './units/FindUserIdDialog';
-import FindUserPwdDialog from './units/FindUserPwdDialog';
-import ChangeUserPwdDialog from './units/ChangeUserPwdDialog'
+
+import UserJoinPage from './page/UserJoinPage';
+import FindUserIdPage from './page/FindUserIdPage';
+import UserPwdPage from './page/UserPwdPage';
 
 function App() {
   const [auth, setAuth] = useState(false);
 
   return (
-    // <>
-    //   {auth ? (
-    //     <MainLayout />
-    //   ) : (
-    //     <LoginDialog onLoginSuccess={() => setAuth(true)} />
-    //   )}
-    // </>
     <Routes>
-      <Route path="/login" element={<LoginDialog/>} />
-      <Route path="/home" element={<MainLayout/>} />
-      <Route path='/join' element={<RegisterDialog/>} />
-      <Route path='/findId' element={<FindUserIdDialog/>} />
-      <Route path='/changePwd' element={<ChangeUserPwdDialog/>} />
+      <Route path="/home" element={<MainPage/>} />
+      <Route path="/login" element={<LoginPage/>} />
+      <Route path='/account/join' element={<UserJoinPage/>} />
+      <Route path='/account/find-id' element={<FindUserIdPage/>} />
+      <Route path='/account/find-pwd' element={<UserPwdPage/>} />
   </Routes>    
 
 

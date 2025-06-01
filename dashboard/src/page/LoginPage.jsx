@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { login } from '../auth';
 
-const LoginDialog = () => {
+const LoginPage = () => {
     const { t } = useTranslation();  // useTranslation hook;
     const navigate = useNavigate();
 
@@ -22,6 +22,27 @@ const LoginDialog = () => {
         // onLoginSuccess(); // App 상태 갱신
         navigate('/home')
     };  
+
+    // route to find user id
+    const handleFindId = () => {
+        navigate('/findId')
+    }
+
+    // route to find user password
+    const handleFindPwd = () => {
+        navigate('/')
+    }
+
+    // rout to register user
+    const handleUserJoin = () => {
+        navigate('/join')
+
+    }
+
+    // handle google auth login
+    const hadleGoogleLogin = () => {
+        alert('try to login via google auth!')        
+    }
 
     return (
         <div className="w-full min-h-screen flex items-center justify-center bg-gray-200">
@@ -72,7 +93,7 @@ const LoginDialog = () => {
 
             {/* 하단 링크 */}
             <div className="flex justify-between text-sm text-blue-400">
-            <button className="hover:underline">{t('txtUserLogin')}</button>
+            <button className="hover:underline">{t('txtFindUserId')}</button>
             <button className="hover:underline">{t('txtFindUserPwd')}</button>
             </div>
             <div className="text-center text-sm text-gray-400">{t('txtOr')}</div>
@@ -92,4 +113,4 @@ const LoginDialog = () => {
     );
 };
 
-export default LoginDialog;
+export default LoginPage;

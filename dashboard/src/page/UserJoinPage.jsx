@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const RegisterDialog = () => {
+const UserJoinPage = () => {
   const [form, setForm] = useState({
     username: '',
     name: '',
@@ -147,4 +147,4 @@ const RegisterDialog = () => {
   );
 }
 
-export default RegisterDialog;
+export default UserJoinPage;

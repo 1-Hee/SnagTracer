@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 // components
 import ImagePreviewModal from "../units/ImagePreviewModal"
 
-const UserProfilePage = () => {
+const UserProfileSection = () => {
     const { t } = useTranslation();  // useTranslation hook;        
     // dummy
     const [userInfo, setUserInfo] = useState({
@@ -183,4 +183,4 @@ const UserProfilePage = () => {
     );
 }
 
-export default UserProfilePage;
+export default UserProfileSection;

@@ -18,7 +18,7 @@ import ConfirmDialog from '../units/ConfirmDialog';
 
 const testUrl = "https://www.adobe.com/support/products/enterprise/knowledgecenter/media/c4611_sample_explain.pdf"
 
-const IssueViewPage = () => {
+const IssueViewSection = () => {
     // const { issueId } = useParams();
     const [searchParams] = useSearchParams();
     const issueId = searchParams.get("issueId");     // '1234'
@@ -146,4 +146,4 @@ const IssueViewPage = () => {
   );
 }
 
-export default IssueViewPage
+export default IssueViewSection;

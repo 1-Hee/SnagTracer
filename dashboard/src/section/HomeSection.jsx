@@ -17,7 +17,7 @@ function ItemLoginInfo({label, value}) {
     )
 }
 
-const HomePage = () => {
+const HomeSection= () => {
     const { t } = useTranslation();  // useTranslation hook;
     // Sample Data
     const userInfo = {
@@ -50,4 +50,4 @@ const HomePage = () => {
     )
 }
 
-export default HomePage;
+export default HomeSection;

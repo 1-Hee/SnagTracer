@@ -1,7 +1,7 @@
 // 📁 components/user/FindUserIdDialog.jsx
 import React, { useState } from 'react';
 
-const FindUserIdDialog = () => {
+const FindUserIdPage = () => {
   const [email, setEmail] = useState('');
 
   const handleFindId = () => {
@@ -30,4 +30,4 @@ const FindUserIdDialog = () => {
   );
 };
 
-export default FindUserIdDialog;
+export default FindUserIdPage

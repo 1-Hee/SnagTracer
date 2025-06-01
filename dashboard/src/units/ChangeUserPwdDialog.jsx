@@ -1,7 +1,7 @@
 // 📁 components/user/ChangeUserPwdDialog.jsx
 import React, { useState } from 'react';
 
-const ChangeUserPwdDialog = () => {
+const ChangeUserPwdDialog = ({userId}) => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);

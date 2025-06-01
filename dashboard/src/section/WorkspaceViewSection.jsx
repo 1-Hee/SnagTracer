@@ -76,7 +76,7 @@ const profileWorkspace = {
 
 }
 
-const WorkspaceViewPage = () => {
+const WorkspaceViewSection = () => {
     const [searchParams] = useSearchParams();
     const workspaceId = searchParams.get("workId");     // '1234'  
     const navigate = useNavigate();
@@ -150,4 +150,4 @@ const WorkspaceViewPage = () => {
     );
 }
 
-export default WorkspaceViewPage
+export default WorkspaceViewSection;
