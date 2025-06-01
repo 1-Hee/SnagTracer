@@ -1,0 +1,23 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5433/snag_tracer_db
+    username: snag_admin
+    password: snag_@#4458!@K
+    driver-class-name: org.postgresql.Driver
+  sql:
+    init:
+      mode: always
+  jdbc:
+    schema: classpath:schema.sql
+  application:
+    name: "Snag Tracer"
+
+springdoc:
+  packages-to-scan: com.aiden.snagtracer.controller
+  default-consumes-media-type: application/json;charset=UTF-8
+  default-produces-media-type: application/json;charset=UTF-8
+  swagger-ui:
+    path: /
+    disable-swagger-default-url: true
+    display-request-duration: true
+    operations-sorter: alpha
