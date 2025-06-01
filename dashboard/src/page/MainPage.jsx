@@ -1,8 +1,8 @@
 // libs
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { useSearchParams } from "react-router-dom";
-import { logout } from "../auth"
+import { useSearchParams, useNavigate } from "react-router-dom";
+import { logout, isAuthenticated } from "../auth"
 
 // components
 import SidebarItem from "../units/SidebarItem";
@@ -45,6 +45,7 @@ const sidebarItems = [
 
 const MainPage = () => {
     const { t } = useTranslation();  // useTranslation hook;
+    const navigate = useNavigate();
     const [isSideOpen, setIsSideOpen] = useState(true);
     const [searchParams] = useSearchParams();
     const menu = searchParams.get("menu"); // menu 파라미터 검색
@@ -73,6 +74,13 @@ const MainPage = () => {
             return <HomeSection/>
         }
       };
+
+      // 로그인 감지
+      useEffect(() => {
+        if(!isAuthenticated()) {
+          navigate('/');
+        }
+      }, []);
 
     return(
       <div className="flex flex-col h-screen">

@@ -1,7 +1,13 @@
-// 📁 components/user/FindUserPwdDialog.jsx
+// libs
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from "react-i18next";
+
+// assets
+
+// components
 
 const FindUserPwdDialog = ({onVerified}) => {
+  const { t } = useTranslation();  // useTranslation hook;
   const [id, setId] = useState('');
   const [email, setEmail] = useState('');
   const [code, setCode] = useState('');
@@ -16,6 +22,11 @@ const FindUserPwdDialog = ({onVerified}) => {
   const handleVerify = () => {
     // TODO: 인증코드 확인 구현
     alert(`입력한 코드: ${code}`);
+    if(code){
+      // navigate()
+      onVerified();
+    }
+
   };
 
   useEffect(() => {
@@ -28,10 +39,10 @@ const FindUserPwdDialog = ({onVerified}) => {
 
   return (
     <div className="max-w-sm mx-auto bg-white p-6 rounded-lg shadow mt-6">
-      <h2 className="text-xl font-semibold mb-4">비밀번호 찾기</h2>
+      <h2 className="text-xl font-semibold mb-4">{t('txtFindUserPwd')}</h2>
       <input
         type="text"
-        placeholder="아이디를 입력해주세요."
+        placeholder={t('hintUserId')}
         value={id}
         onChange={(e) => setId(e.target.value)}
         className="w-full p-2 border rounded mb-4"
@@ -39,32 +50,33 @@ const FindUserPwdDialog = ({onVerified}) => {
       <div className="flex gap-2 mb-4">
         <input
           type="email"
-          placeholder="이메일을 입력해주세요."
+          placeholder={t('hintInputEmail')}
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           className="w-full p-2 border rounded"
         />
         <button onClick={handleSendCode} className="bg-blue-100 px-4 py-2 rounded">
-          코드 발송
+          {t('txtSendCode')}
         </button>
       </div>
       <div className="flex gap-2 mb-2">
         <input
           type="text"
-          placeholder="인증코드"
+          placeholder={t('txtAuthCode')}
           value={code}
           onChange={(e) => setCode(e.target.value)}
           className="w-full p-2 border rounded"
         />
-        <button onClick={handleVerify} className="bg-blue-100 px-4 py-2 rounded">
-          확인
-        </button>
+        {/* <button onClick={handleVerify} className="bg-blue-100 px-4 py-2 rounded">
+          {t('txtAuth')}
+        </button> */}
       </div>
-      <p className="text-xs text-purple-600 mb-4">남은시간: {formatTime(timeLeft)}</p>
+      <p className="text-xs text-purple-600 mb-4">{t('txtTimeRemain')}: {formatTime(timeLeft)}</p>
       <button
         className="w-full bg-blue-200 hover:bg-blue-300 text-white py-2 rounded"
+        onClick={handleVerify}
       >
-        비밀번호 찾기
+        {t('txtSubmit')}
       </button>
     </div>
   );

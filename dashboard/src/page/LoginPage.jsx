@@ -25,17 +25,17 @@ const LoginPage = () => {
 
     // route to find user id
     const handleFindId = () => {
-        navigate('/findId')
+        navigate('/account/find-id')
     }
 
     // route to find user password
     const handleFindPwd = () => {
-        navigate('/')
+        navigate('/account/find-pwd')
     }
 
     // rout to register user
     const handleUserJoin = () => {
-        navigate('/join')
+        navigate('/account/join')
 
     }
 
@@ -93,17 +93,33 @@ const LoginPage = () => {
 
             {/* 하단 링크 */}
             <div className="flex justify-between text-sm text-blue-400">
-            <button className="hover:underline">{t('txtFindUserId')}</button>
-            <button className="hover:underline">{t('txtFindUserPwd')}</button>
+            <button 
+                className="hover:underline"
+                onClick={handleFindId}
+                >
+                {t('txtFindUserId')}
+            </button>
+            <button 
+                className="hover:underline"
+                onClick={handleFindPwd}
+                >
+                {t('txtFindUserPwd')}
+            </button>
             </div>
             <div className="text-center text-sm text-gray-400">{t('txtOr')}</div>
-            <button className="w-full py-2 border border-gray-300 rounded text-sm hover:bg-gray-50">
+            <button 
+                className="w-full py-2 border border-gray-300 rounded text-sm hover:bg-gray-50"
+                onClick={hadleGoogleLogin}
+                >
                 {t('txtLoginGoogle')}
             </button>
             <div className="text-center text-sm">
                 {t('hintUserJoin')}
             <div>
-                <button className="mt-2 px-4 py-1 bg-blue-200 text-white rounded hover:bg-blue-300 transition text-sm">
+                <button 
+                    className="mt-2 px-4 py-1 bg-blue-200 text-white rounded hover:bg-blue-300 transition text-sm"
+                    onClick={handleUserJoin}
+                    >
                 {t('txtUserJoin')}
                 </button>
             </div>

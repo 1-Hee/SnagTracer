@@ -1,6 +1,6 @@
 // libs
 import React, { useState, useEffect } from 'react';
-import { useTranslation } from "react-i18next";
+import { isAuthenticated } from "../auth"
 
 // assets
 
@@ -9,18 +9,15 @@ import FindUserPwdDialog from '../units/FindUserPwdDialog';
 import ChangeUserPwdDialog from '../units/ChangeUserPwdDialog'
 
 const UserPwdPage = () => {
-    const [step, setStep] = useState('verify');
+    const [isVerified, setIsVerified] = useState(isAuthenticated());
     const [verifiedUserId, setVerifiedUserId] = useState(null);
   
-    return step === 'verify' ? (
-      <FindUserPwdDialog
-        onVerified={(userId) => {
-          setVerifiedUserId(userId);
-          setStep('reset');
-        }}
-      />
+    return isVerified ? (
+      <ChangeUserPwdDialog userId={verifiedUserId} />      
     ) : (
-      <ChangeUserPwdDialog userId={verifiedUserId} />
+      <FindUserPwdDialog
+        onVerified={()=>{setIsVerified(true)}}
+      />
     );
 }
 

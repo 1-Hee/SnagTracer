@@ -1,12 +1,14 @@
 // libs
 import { useState, useEffect, useRef  } from 'react';
 import { useTranslation } from "react-i18next";
+import { useNavigate } from 'react-router-dom';
 
 // components
 import ImagePreviewModal from "../units/ImagePreviewModal"
 
 const UserProfileSection = () => {
     const { t } = useTranslation();  // useTranslation hook;        
+    const navigate = useNavigate();
     // dummy
     const [userInfo, setUserInfo] = useState({
             id:1234,
@@ -28,13 +30,17 @@ const UserProfileSection = () => {
     const [isImageModalOpen, setIsImageModalOpen] = useState(false);
     const [previewImageSrc, setPreviewImageSrc] = useState('https://picsum.photos/200');
 
+    // 비밀번호 변경 모달
+    const hadleRouteChangePwd = () => {
+        navigate('/account/find-pwd')
+    }
+
     // 모달 표시 토글 함수
     const handleImageClick = (src) => {
         setPreviewImageSrc(src);
         setIsImageModalOpen(true);
     };
       
-
     // ⏱️ 인증 요청 버튼 클릭 시
     const handleAuthRequest = () => {
         if (isRequestAuth) return; // 중복 요청 방지
@@ -175,7 +181,10 @@ const UserProfileSection = () => {
                 </div>
             </div>
             <div className="my-4 mt-8">
-                <button className="transition-all duration-200 text-sm text-pale-blue500 hover:text-pale-blue300">
+                <button 
+                    className="transition-all duration-200 text-sm text-pale-blue500 hover:text-pale-blue300"
+                    onClick={hadleRouteChangePwd}
+                    >
                     {t('txtChangePassword')}
                 </button>
             </div>

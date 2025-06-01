@@ -1,6 +1,13 @@
+// libs
 import React, { useState, useEffect } from 'react';
+import { useTranslation } from "react-i18next";
+
+// assets
+
+// compoents
 
 const UserJoinPage = () => {
+  const { t } = useTranslation();  // useTranslation hook;
   const [form, setForm] = useState({
     username: '',
     name: '',
@@ -51,21 +58,19 @@ const UserJoinPage = () => {
         onSubmit={handleSubmit}
         className="bg-white w-96 p-8 rounded-xl shadow-lg space-y-5"
       >
-        <h2 className="text-center text-xl font-bold">회원 가입</h2>
-
+        <h2 className="text-center text-xl font-bold">{t('txtUserJoin')}</h2>
         <input
           type="text"
           name="username"
-          placeholder="아이디를 입력해주세요"
+          placeholder={t('hintUserId')}
           value={form.username}
           onChange={handleChange}
           className="w-full border border-gray-300 p-2 rounded"
         />
-
         <input
           type="text"
           name="name"
-          placeholder="이름을 입력해주세요"
+          placeholder={t('hintUserName')}
           value={form.name}
           onChange={handleChange}
           className="w-full border border-gray-300 p-2 rounded"
@@ -75,7 +80,7 @@ const UserJoinPage = () => {
           <input
             type="email"
             name="email"
-            placeholder="이메일을 입력해주세요"
+            placeholder={t('hintInputEmail')}
             value={form.email}
             onChange={handleChange}
             className="flex-grow border border-gray-300 p-2 rounded"
@@ -85,7 +90,7 @@ const UserJoinPage = () => {
             onClick={handleSendCode}
             className="bg-sky-200 hover:bg-sky-300 px-3 py-2 rounded text-sm"
           >
-            코드 발송
+            {t('txtSendCode')}
           </button>
         </div>
 
@@ -93,7 +98,7 @@ const UserJoinPage = () => {
           <input
             type="text"
             name="code"
-            placeholder="인증코드"
+            placeholder={t('txtAuthCode')}
             value={form.code}
             onChange={handleChange}
             className="flex-grow border border-gray-300 p-2 rounded"
@@ -102,20 +107,20 @@ const UserJoinPage = () => {
             type="button"
             className="bg-blue-200 hover:bg-blue-300 px-3 py-2 rounded text-sm"
           >
-            확인
+            {t('txtAuth')}
           </button>
         </div>
 
         {codeSent && (
           <p className="text-right text-xs text-purple-700 font-semibold">
-            남은시간: {formatTime(timer)}
+            {t('txtTimeRemain')}: {formatTime(timer)}
           </p>
         )}
 
         <input
           type={showPassword ? 'text' : 'password'}
           name="password"
-          placeholder="비밀번호를 입력해주세요"
+          placeholder={t('hintUserPwd')}
           value={form.password}
           onChange={handleChange}
           className="w-full border border-gray-300 p-2 rounded"
@@ -124,13 +129,13 @@ const UserJoinPage = () => {
         <div className="flex justify-end text-sm text-gray-500 cursor-pointer mb-1"
           onClick={() => setShowPassword((prev) => !prev)}
         >
-          비밀번호 보기
+          {t('txtShowPwd')}
         </div>
 
         <input
           type="password"
           name="confirmPassword"
-          placeholder="비밀번호를 입력해주세요"
+          placeholder={t('hintUserPwd')}
           value={form.confirmPassword}
           onChange={handleChange}
           className="w-full border border-gray-300 p-2 rounded"
@@ -140,7 +145,7 @@ const UserJoinPage = () => {
           type="submit"
           className="w-full bg-sky-300 hover:bg-sky-400 text-white py-2 rounded font-semibold"
         >
-          회원 가입
+          {t('txtUserJoin')}
         </button>
       </form>
     </div>

@@ -9,7 +9,7 @@ export function login(token) {
 
 export function logout() {
   Cookies.remove(TOKEN_KEY);
-  window.location.reload();
+  // window.location.reload();
 }
 
 export function isAuthenticated() {
