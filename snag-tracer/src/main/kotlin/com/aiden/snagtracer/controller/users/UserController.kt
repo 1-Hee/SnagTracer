@@ -1,11 +1,12 @@
-package com.aiden.snagtracer.controller
+package com.aiden.snagtracer.controller.users
 
 // Kotlin
+import com.aiden.snagtracer.controller.BaseRestController
 import com.aiden.snagtracer.model.users.JoinUser
 import com.aiden.snagtracer.model.users.ResultJoinUser
 import com.aiden.snagtracer.model.users.UpdateUser
 import com.aiden.snagtracer.model.users.User
-import com.aiden.snagtracer.service.UserService
+import com.aiden.snagtracer.service.users.UserService
 import io.swagger.v3.oas.annotations.Hidden
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.Parameter
@@ -23,11 +24,11 @@ import java.util.UUID
 @RequestMapping("/users")
 class UserController(
     private val userService: UserService?
-) {
+) : BaseRestController<UserService>  {
 
     private val logger: Logger = LoggerFactory.getLogger(UserController::class.java)
 
-    private fun getService() : UserService {
+    override fun getService() : UserService {
         val service = this.userService ?: throw ResponseStatusException(
             HttpStatus.INTERNAL_SERVER_ERROR,
             "Server Not Ready for RESPONSE"
@@ -38,6 +39,7 @@ class UserController(
 
     // Create
     @PostMapping
+    @Operation(summary = "사용자 로컬 계정 회원가입", description = "로컬 계정으로 사용자 회원 가입을 진행합니다.")
     fun createUser(@RequestBody joinUser : JoinUser) : ResultJoinUser? {
         return getService().createUser(joinUser) ?: throw ResponseStatusException(
             HttpStatus.NOT_FOUND,

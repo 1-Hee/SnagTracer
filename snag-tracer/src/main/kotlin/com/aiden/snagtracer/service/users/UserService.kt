@@ -1,4 +1,4 @@
-package com.aiden.snagtracer.service
+package com.aiden.snagtracer.service.users
 
 import com.aiden.snagtracer.model.users.JoinUser
 import com.aiden.snagtracer.model.users.ResultJoinUser

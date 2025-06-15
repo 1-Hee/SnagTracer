@@ -1,10 +1,10 @@
-package com.aiden.snagtracer.service
+package com.aiden.snagtracer.service.users
 
 import com.aiden.snagtracer.model.users.JoinUser
 import com.aiden.snagtracer.model.users.ResultJoinUser
 import com.aiden.snagtracer.model.users.UpdateUser
 import com.aiden.snagtracer.model.users.User
-import com.aiden.snagtracer.repository.UserRepository
+import com.aiden.snagtracer.repository.users.UserRepository
 import org.springframework.stereotype.Service
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory

@@ -1,4 +1,4 @@
-package com.aiden.snagtracer.repository
+package com.aiden.snagtracer.repository.users
 
 import com.aiden.snagtracer.model.users.User
 import org.springframework.data.repository.CrudRepository
