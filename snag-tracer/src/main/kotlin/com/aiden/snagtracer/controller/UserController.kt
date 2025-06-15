@@ -1,7 +1,10 @@
 package com.aiden.snagtracer.controller
 
 // Kotlin
-import com.aiden.snagtracer.model.User
+import com.aiden.snagtracer.model.users.JoinUser
+import com.aiden.snagtracer.model.users.ResultJoinUser
+import com.aiden.snagtracer.model.users.UpdateUser
+import com.aiden.snagtracer.model.users.User
 import com.aiden.snagtracer.service.UserService
 import io.swagger.v3.oas.annotations.Hidden
 import io.swagger.v3.oas.annotations.Operation
@@ -12,6 +15,7 @@ import org.springframework.web.bind.annotation.*
 import org.springframework.web.server.ResponseStatusException
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
+import java.util.UUID
 
 
 @Tag(name = "User Info API", description = "사용자 정보 요청 API")
@@ -34,8 +38,11 @@ class UserController(
 
     // Create
     @PostMapping
-    fun createUser(@RequestBody user : User) : User {
-        return getService().createUser(user)
+    fun createUser(@RequestBody joinUser : JoinUser) : ResultJoinUser? {
+        return getService().createUser(joinUser) ?: throw ResponseStatusException(
+            HttpStatus.NOT_FOUND,
+            "User Register Fail... $joinUser"
+        )
     }
 
     // Read
@@ -51,26 +58,33 @@ class UserController(
     @Operation(summary = "사용자 정보 요청", description = "사용자 이이디를 바탕으로 정보를 요청합니다.")
     @Parameter(name = "userId", description = "사용자 로그인 Id")
     @GetMapping(params = ["userId"])
-    fun getUser(@RequestParam userId:String) : User? {
+    fun getUserByUserId(@RequestParam userId:String) : User? {
         return getService().getUserById(userId) ?: throw ResponseStatusException(
             HttpStatus.NOT_FOUND,
             "User with id '$userId' not found"
         )
     }
 
+    @Operation(summary = "사용자 정보 요청", description = "사용자 고유 식별 번호를 바탕으로 정보를 요청합니다.")
+    @Parameter(name = "uuid", description = "사용자 고유 식별 번호")
+    @GetMapping("/key", params = ["uuid"])
+    fun getUserByUuid(@RequestParam uuid: UUID) : User? {
+        return getService().getUserByUuid(uuid) ?: throw ResponseStatusException(
+            HttpStatus.NOT_FOUND,
+            "User with uuid '$uuid' not found"
+        )
+    }
+
     // Update
     @PutMapping
-    fun editUser(@RequestParam userId: String, @RequestBody userInfo:User) : User? {
-        return getService().editUser(userId, userInfo) ?: throw ResponseStatusException(
-            HttpStatus.NOT_FOUND,
-            "User with id '$userId' not found"
-        )
+    fun editUser(@RequestBody userInfo: UpdateUser) : Boolean {
+        return getService().editUser(userInfo)
     }
 
     // Delete
     @DeleteMapping
-    fun removeUser(@RequestParam userId: String) : Boolean {
-        return getService().removeUser(userId)
+    fun removeUser(@RequestParam uuid: UUID) : Boolean {
+        return getService().removeUser(uuid)
     }
 
     @Hidden
