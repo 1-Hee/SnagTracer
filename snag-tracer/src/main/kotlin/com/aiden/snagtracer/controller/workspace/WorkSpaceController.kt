@@ -41,8 +41,23 @@ class WorkSpaceController(
     // Create
     @PostMapping
     @Operation(summary = "작업실 생성 요청", description = "입력된 정보를 바탕으로 작업실(Work Space)를 생성합니다.")
-    fun createWorkSpace(@RequestBody workSpace: AddWorkSpace) : Int {
-        return getService().createWorkSpace(workSpace)
+    fun createWorkSpace(@RequestBody workSpace: AddWorkSpace) : ResultWorkSpace {
+        return try {
+            val line:Int = getService().createWorkSpace(workSpace)
+            ResultWorkSpace(
+                workSpace.code,
+                workSpace.spaceName,
+                workSpace.spaceDomain,
+                (line > 0)
+            )
+        }catch (e: Exception){
+            ResultWorkSpace(
+                workSpace.code,
+                workSpace.spaceName,
+                workSpace.spaceDomain,
+                false
+            )
+        }
     }
 
     // Read
