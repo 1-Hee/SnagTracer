@@ -4,13 +4,14 @@ import com.aiden.snagtracer.model.users.JoinUser
 import com.aiden.snagtracer.model.users.ResultJoinUser
 import com.aiden.snagtracer.model.users.UpdateUser
 import com.aiden.snagtracer.model.users.User
+import com.aiden.snagtracer.service.BaseService
 import java.util.UUID
 
 /*
 import java.util.List;
 import java.util.Map;
  */
-interface UserService {
+interface UserService : BaseService {
 
     // Create
     fun createUser(joinUser: JoinUser): ResultJoinUser?

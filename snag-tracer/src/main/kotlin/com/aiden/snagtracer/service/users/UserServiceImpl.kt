@@ -49,10 +49,8 @@ class UserServiceImpl(
     }
 
     override fun getAllUserList(page: Int, size: Int): List<User> {
-        val allUsers = userRepository.findAllByStatus(1).toList()
-        val fromIndex = (page - 1) * size
-        val toIndex = (fromIndex + size).coerceAtMost(allUsers.size)
-        return if (fromIndex >= allUsers.size) emptyList() else allUsers.subList(fromIndex, toIndex)
+        val offset = getOffset(page, size)
+        return userRepository.findPageList(size, offset)
     }
 
     override fun getUserById(userId: String): User? {

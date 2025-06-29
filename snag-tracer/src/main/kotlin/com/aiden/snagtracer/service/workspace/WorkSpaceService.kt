@@ -1,9 +1,10 @@
 package com.aiden.snagtracer.service.workspace
 
 import com.aiden.snagtracer.model.workspace.*
+import com.aiden.snagtracer.service.BaseService
 import java.util.*
 
-interface WorkSpaceService {
+interface WorkSpaceService : BaseService {
 
     // * ------------------------------------------------
     // *   for Workspace
